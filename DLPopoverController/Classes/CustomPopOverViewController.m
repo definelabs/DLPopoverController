@@ -51,7 +51,15 @@
 	CustumPopOverView * pop = [[CustumPopOverView alloc] initWithContentViewController:tableViewController 
 																	  WithPopOverColor:[UIColor blackColor] 
 																			WithOffset:0
-																  WithPopOverDirection:CustomPopOverViewDirectionLeft];
+																  WithPopOverDirection:CustomPopOverViewDirectionDown];
+	
+	
+//	UIPopoverController * popo = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
+//	[popo presentPopoverFromRect:sender.frame 
+//						  inView:sender.superview 
+//		permittedArrowDirections:UIPopoverArrowDirectionRight 
+//						animated:YES];
+	
 	
 	[tableViewController release];
 	[sampleViewController release];

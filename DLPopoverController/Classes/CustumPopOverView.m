@@ -539,15 +539,15 @@
 	CGRect mainViewFrame = self.frame;	
 	
 	if (self.popOverDirection == CustomPopOverViewDirectionUp || self.popOverDirection == CustomPopOverViewDirectionDown) {
-//		if (mainViewFrame.origin.x < 0) {
-//			self.frame = CGRectMake(0, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
-//			offset = -(rect.origin.x + (rect.size.width/2));
-//			[self setNeedsDisplay];
-//		} else if (CGRectGetMaxX(mainViewFrame) > 768) {
-//			self.frame = CGRectMake(768 - mainViewFrame.size.width, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
-//			offset = (rect.origin.x + (rect.size.width/2));
-//			[self setNeedsDisplay];
-//		}
+		if (mainViewFrame.origin.x < 5) {
+			self.frame = CGRectMake(5, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
+			offset = -(rect.origin.x + (rect.size.width/2));
+			[self setNeedsDisplay];
+		} else if (CGRectGetMaxX(mainViewFrame) > 763) {
+			self.frame = CGRectMake(763 - mainViewFrame.size.width, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
+			offset = (rect.origin.x + (rect.size.width/2));
+			[self setNeedsDisplay];
+		}
 	} else if (self.popOverDirection == CustomPopOverViewDirectionLeft || self.popOverDirection == CustomPopOverViewDirectionRight) {
 //		if (mainViewFrame.origin.y < 0) {
 //			self.frame = CGRectMake(mainViewFrame.origin.x, 0, mainViewFrame.size.width, mainViewFrame.size.height);
