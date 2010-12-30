@@ -51,7 +51,7 @@
 	CustumPopOverView * pop = [[CustumPopOverView alloc] initWithContentViewController:tableViewController 
 																	  WithPopOverColor:[UIColor blackColor] 
 																			WithOffset:0
-																  WithPopOverDirection:CustomPopOverViewDirectionDown];
+																  WithPopOverDirection:CustomPopOverViewDirectionLeft];
 	
 	[tableViewController release];
 	[sampleViewController release];
