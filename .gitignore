@@ -1,0 +1,30 @@
+[glob]
+*/.DS_Store
+./build
+./AliPad.xcodeproj/*.pbxuser
+./AliPad.xcodeproj/*.mode1v3
+./Products
+./*.pbxuser
+./*.perspectivev3
+./*.mode1v3
+./.pbxuser
+./.perspectivev3
+./.mode1v3
+TT/.pbxuser
+TT/.perspectivev3
+TT/.mode1v3
+TT/*.pbxuser
+TT/*.perspectivev3
+TT/*.mode1v3
+# xcode noise
+build/*
+*.pbxuser
+*.mode1v3
+
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+profile
+
