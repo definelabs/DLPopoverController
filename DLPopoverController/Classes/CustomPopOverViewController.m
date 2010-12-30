@@ -47,10 +47,10 @@
 	TableViewController * tableViewController = [[TableViewController alloc] initWithStyle:UITableViewStylePlain];
 	SampleViewController * sampleViewController = [[SampleViewController alloc] initWithNibName:@"SampleViewController" 
 																						 bundle:nil];
-//	tableViewController.view.frame = CGRectMake(0, 0, 320, 400);
+	tableViewController.view.frame = CGRectMake(0, 0, 320, 400);
 	CustumPopOverView * pop = [[CustumPopOverView alloc] initWithContentViewController:tableViewController 
 																	  WithPopOverColor:[UIColor blackColor] 
-																			WithOffset:0.f
+																			WithOffset:0
 																  WithPopOverDirection:CustomPopOverViewDirectionDown];
 	
 	[tableViewController release];
