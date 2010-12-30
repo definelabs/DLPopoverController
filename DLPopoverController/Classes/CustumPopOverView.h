@@ -19,7 +19,7 @@ typedef enum {
 } CustumPopOverDirection;
 
 @interface UIWindow(Extended)
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+//-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 @end
 
 
@@ -30,11 +30,14 @@ typedef enum {
 	UIColor * popOverColor;
 	float offset;
 	CustumPopOverDirection popOverDirection;
+	NSArray * gradientColorsArray;
+	UITapGestureRecognizer * singleFingerTapGesture;
 }
 
 @property (nonatomic,retain) UIViewController * contentViewController;
 @property (nonatomic,assign) CGSize contentSize;
 @property (nonatomic,assign) CustumPopOverDirection popOverDirection;
+@property (nonatomic,assign) NSArray * gradientColorsArray;
 
 
 
