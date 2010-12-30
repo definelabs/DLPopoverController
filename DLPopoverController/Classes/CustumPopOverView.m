@@ -289,7 +289,7 @@
 				self.contentViewController.view.center = popOverView.center;
 				break;
 			case CustomPopOverViewDirectionLeft:
-				self.contentViewController.view.center = popOverView.center;
+				self.contentViewController.view.center = CGPointMake(popOverView.center.x - ARROW_HEIGHT, popOverView.center.y);//popOverView.center;
 				break;
 			case CustomPopOverViewDirectionRight:
 				self.contentViewController.view.center = popOverView.center;
@@ -448,36 +448,38 @@
 			break;
 		case CustomPopOverViewDirectionLeft:
 		{
-			float mainViewWidth = self.frame.size.width;
-			float arrowPosition = (mainViewWidth / 2) + offset;
+			float mainViewHeight = self.frame.size.height;
+			float arrowPosition = (mainViewHeight / 2) + offset;
 			if (arrowPosition < 40) {
 				arrowPosition = 40;
-			}else if (arrowPosition > mainViewWidth - 40) {
-				arrowPosition = mainViewWidth - 40;
+			}else if (arrowPosition > mainViewHeight - 40) {
+				arrowPosition = mainViewHeight - 40;
 			}
-			CGContextMoveToPoint(context,arrowPosition , 0);
-			CGContextAddLineToPoint(context, arrowPosition + 30, 31);
-			CGContextAddLineToPoint(context, arrowPosition - 30, 31);
+			NSLog(@"Rect %@",NSStringFromCGRect(self.frame));
+			NSLog(@"maxX %f",self.frame.size.width);
+			CGContextMoveToPoint(context,0, arrowPosition );
+			CGContextAddLineToPoint(context, 31,arrowPosition - 30);
+			CGContextAddLineToPoint(context, 31,arrowPosition + 30);
 			CGContextClosePath(context);
 			CGContextFillPath(context);
-			
 		}
 			break;
 		case CustomPopOverViewDirectionRight:
 		{
-			float mainViewWidth = self.frame.size.width;
-			float arrowPosition = (mainViewWidth / 2) + offset;
+			float mainViewHeight = self.frame.size.height;
+			float arrowPosition = (mainViewHeight / 2) + offset;
 			if (arrowPosition < 40) {
 				arrowPosition = 40;
-			}else if (arrowPosition > mainViewWidth - 40) {
-				arrowPosition = mainViewWidth - 40;
+			}else if (arrowPosition > mainViewHeight - 40) {
+				arrowPosition = mainViewHeight - 40;
 			}
-			CGContextMoveToPoint(context,arrowPosition , 0);
-			CGContextAddLineToPoint(context, arrowPosition + 30, 31);
-			CGContextAddLineToPoint(context, arrowPosition - 30, 31);
+			NSLog(@"Rect %@",NSStringFromCGRect(self.frame));
+			NSLog(@"maxX %f",self.frame.size.width);
+			CGContextMoveToPoint(context,self.frame.size.width, arrowPosition );
+			CGContextAddLineToPoint(context, self.frame.size.width - 31,arrowPosition - 30);
+			CGContextAddLineToPoint(context, self.frame.size.width - 31,arrowPosition + 30);
 			CGContextClosePath(context);
 			CGContextFillPath(context);
-			
 		}
 			break;
 			
@@ -516,10 +518,12 @@
 			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y - (self.frame.size.height/2) + 20);
 			break;
 		case CustomPopOverViewDirectionLeft:
-			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+			self.center = CGPointMake(CGRectGetMaxX(rect) + (self.frame.size.width / 2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+//			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
 			break;
 		case CustomPopOverViewDirectionRight:
-			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+//			self.center = CGPointMake(rect.origin.x - (self.frame.size.width / 2), rect.origin.y + (rect.size.height/2));
+			self.center = CGPointMake(rect.origin.x - (self.frame.size.width/2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
 			break;
 			
 		default:
@@ -533,15 +537,29 @@
 	NSLog(@"self.frame %@",NSStringFromCGRect(self.frame));
 	
 	CGRect mainViewFrame = self.frame;	
-	if (mainViewFrame.origin.x < 0) {
-		self.frame = CGRectMake(0, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
-		offset = -(rect.origin.x + (rect.size.width/2));
-		[self setNeedsDisplay];
-	} else if (CGRectGetMaxX(mainViewFrame) > 768) {
-		self.frame = CGRectMake(768 - mainViewFrame.size.width, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
-		offset = (rect.origin.x + (rect.size.width/2));
-		[self setNeedsDisplay];
+	
+	if (self.popOverDirection == CustomPopOverViewDirectionUp || self.popOverDirection == CustomPopOverViewDirectionDown) {
+//		if (mainViewFrame.origin.x < 0) {
+//			self.frame = CGRectMake(0, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
+//			offset = -(rect.origin.x + (rect.size.width/2));
+//			[self setNeedsDisplay];
+//		} else if (CGRectGetMaxX(mainViewFrame) > 768) {
+//			self.frame = CGRectMake(768 - mainViewFrame.size.width, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
+//			offset = (rect.origin.x + (rect.size.width/2));
+//			[self setNeedsDisplay];
+//		}
+	} else if (self.popOverDirection == CustomPopOverViewDirectionLeft || self.popOverDirection == CustomPopOverViewDirectionRight) {
+//		if (mainViewFrame.origin.y < 0) {
+//			self.frame = CGRectMake(mainViewFrame.origin.x, 0, mainViewFrame.size.width, mainViewFrame.size.height);
+//			offset = -(rect.origin.y + (rect.size.height/2));
+//			[self setNeedsDisplay];
+//		} else if (CGRectGetMaxY(mainViewFrame) > 1004) {
+//			self.frame = CGRectMake(mainViewFrame.origin.x, 1004 - mainViewFrame.size.height, mainViewFrame.size.width, mainViewFrame.size.height);
+//			offset = (rect.origin.y + (rect.size.height/2));
+//			[self setNeedsDisplay];
+//		}
 	}
+	
 	
 	
 	CATransition *transition = [CATransition animation];
@@ -554,7 +572,7 @@
 
 -(void) dismissPopOver {
 	CATransition *transition = [CATransition animation];
-	transition.duration = 1.f;
+	transition.duration = .3f;
 	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 	transition.type = kCATransitionFade;
 	transition.subtype = nil;
