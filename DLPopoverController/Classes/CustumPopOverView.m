@@ -14,25 +14,25 @@
 
 @implementation UIWindow(Extended)
 
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"touchesBegan");
-	for (id obj in self.subviews) {
-		if ([obj isMemberOfClass:[CustumPopOverView class]]) {
-			CustumPopOverView * objView = (CustumPopOverView *)obj;
-//			CATransition *transition = [CATransition animation];
-//			transition.duration = 1.f;
-//			transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-//			transition.type = kCATransitionFade;
-//			transition.subtype = nil;
-//			transition.delegate = self;
-//			[objView.layer addAnimation:transition forKey:nil];
-//			[objView removeFromSuperview];
-			[objView dismissPopOver];
-			break;
-		}
-	}
-	NSLog(@"self.subviews : %@",self.subviews);
-}
+//-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//	NSLog(@"touchesBegan");
+//	for (id obj in self.subviews) {
+//		if ([obj isMemberOfClass:[CustumPopOverView class]]) {
+//			CustumPopOverView * objView = (CustumPopOverView *)obj;
+////			CATransition *transition = [CATransition animation];
+////			transition.duration = 1.f;
+////			transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+////			transition.type = kCATransitionFade;
+////			transition.subtype = nil;
+////			transition.delegate = self;
+////			[objView.layer addAnimation:transition forKey:nil];
+////			[objView removeFromSuperview];
+//			[objView dismissPopOver];
+//			break;
+//		}
+//	}
+//	NSLog(@"self.subviews : %@",self.subviews);
+//}
 
 
 -(void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
@@ -46,6 +46,7 @@
 @implementation CustumPopOverView
 @synthesize contentViewController;
 @synthesize contentSize,popOverDirection;
+@synthesize gradientColorsArray;
 
 
 //-(void) setPopOverColor:(UIColor *) aColor { 
@@ -303,37 +304,37 @@
 		NSLog(@"popOverView %@",NSStringFromCGRect(popOverView.frame));
 		//popOverView.backgroundColor = popOverColor;
 		
-		CAGradientLayer *gradient = [CAGradientLayer layer];
-		gradient.frame = popOverView.bounds;
-		gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(CGFloat)(41.f/255.f) green:(CGFloat)(101.f/255.f) blue:(CGFloat)(251.f/255.f) alpha:1] CGColor], 
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],nil];
-		
-		[popOverView.layer insertSublayer:gradient atIndex:0];
+		//CAGradientLayer *gradient = [CAGradientLayer layer];
+//		gradient.frame = popOverView.bounds;
+//		gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(CGFloat)(41.f/255.f) green:(CGFloat)(101.f/255.f) blue:(CGFloat)(251.f/255.f) alpha:1] CGColor], 
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],nil];
+//		
+//		[popOverView.layer insertSublayer:gradient atIndex:0];
 		[popOverView.layer setBorderColor:[UIColor darkGrayColor].CGColor];
 		[popOverView.layer setBorderWidth: 1.0];
 		
@@ -342,6 +343,13 @@
 		popOverView.layer.cornerRadius = CONTENT_VIEW_OFFSET;
 		[popOverView addSubview:self.contentViewController.view];
 		[self addSubview:popOverView];
+		
+		singleFingerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+		singleFingerTapGesture.numberOfTapsRequired = 1;
+		singleFingerTapGesture.delegate = self;
+		[[UIApplication sharedApplication].keyWindow addGestureRecognizer:singleFingerTapGesture];
+		//[singleFingerTapGesture release];
+		
 	}
 	return self;
 }
@@ -579,6 +587,9 @@
 	transition.delegate = self;
 	[self.layer addAnimation:transition forKey:nil];
 	self.hidden = YES;
+	
+	[[UIApplication sharedApplication].keyWindow removeGestureRecognizer:singleFingerTapGesture];
+	singleFingerTapGesture = nil;
 }
 
 
@@ -593,6 +604,62 @@
 
 -(void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
 	[self removeFromSuperview];
+}
+
+-(void)setGradientColorsArray:(NSArray*)colorsArray{
+//	if (gradientColorsArray) {
+//		[gradientColorsArray release];
+//		gradientColorsArray = nil;
+//	}
+	CAGradientLayer *gradient = [CAGradientLayer layer];
+	gradient.frame = popOverView.bounds;
+	gradient.colors = colorsArray;
+	[popOverView.layer insertSublayer:gradient atIndex:0];
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer*)gestureRecognizer{
+	NSLog(@"window touched");
+	[self dismissPopOver];
+
+	
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+	CGPoint touchPoint = [touch locationInView:[UIApplication sharedApplication].keyWindow] ;
+	
+	NSLog(@"x %f",touchPoint.x);
+	NSLog(@"y %f",touchPoint.y);
+	
+	CGPoint touchPoint1 = [touch locationInView:contentViewController.view] ;
+	
+	NSLog(@"x %f",touchPoint1.x);
+	NSLog(@"y %f",touchPoint1.y);
+	
+	UIView * hitView = [self hitTest:touchPoint withEvent:nil];
+	NSLog(@"%@",hitView);
+	
+	UIView * hitView1 = [contentViewController.view hitTest:touchPoint1 withEvent:nil];
+	NSLog(@"%@",hitView1);
+	
+	if (hitView1)
+		return NO;
+	
+//	if ([contentViewController.view.subviews containsObject:hitView] || hitView == contentViewController.view)
+//		return NO;
+	
+	return YES;
+	//	BOOL insideMultimedia = [multimediaSegmentControlBackgroundView pointInside:touchPoint withEvent:nil];
+	//
+	//	//NOOLinsid
+	//		return !insideMultimedia;
+	////		NSLog(@"%f %f",touchPoint.x,touchPoint.y);
+	////		NSLog(@"%f %f",touchPoint.x,touchPoint.y);
+	////		return NO;
+	
+	/*this works but doesnt seem correct*/
+	//	CGPoint touchPoint = [touch locationInView:self.view] ;
+	//	BOOL insideMultimedia = [scrollView hitTest:touchPoint withEvent:nil];
+	//	return !insideMultimedia;
 }
 
 @end
