@@ -202,6 +202,8 @@
 			   WithPopOverDirection:(CustumPopOverDirection) popDirection {
 	self.popOverDirection = popDirection;
 	CGRect contentViewControllerFrame = aViewController.view.frame;
+	self.autoresizesSubviews = YES;
+	self.autoresizingMask = UIViewAutoresizingFlexibleWidth && UIViewAutoresizingFlexibleHeight;
 	if (popOverView) {
 		[popOverView release];
 		popOverView = nil;
@@ -272,6 +274,7 @@
 	
 	if (self) {
 		self.contentViewController = aViewController;
+		self.contentViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin; 
 		offset = aOffset;
 		popOverColor = [[UIColor alloc] initWithCGColor:popColor.CGColor];
 		//		self.contentViewController.navigationController.navigationBar.tintColor = [UIColor yellowColor];
@@ -335,6 +338,7 @@
 //						   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],nil];
 //		
 //		[popOverView.layer insertSublayer:gradient atIndex:0];
+		popOverView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin; 
 		[popOverView.layer setBorderColor:[UIColor darkGrayColor].CGColor];
 		[popOverView.layer setBorderWidth: 1.0];
 		
@@ -517,6 +521,41 @@
 
 -(void) presentPopOverFromRect:(CGRect) rect {
 
+	switch (self.popOverDirection) {
+		case CustomPopOverViewDirectionUp:
+			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+			break;
+		case CustomPopOverViewDirectionDown:
+			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y - (self.frame.size.height/2) + 20);
+			break;
+		case CustomPopOverViewDirectionLeft:
+			self.center = CGPointMake(CGRectGetMaxX(rect) + (self.frame.size.width / 2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+			break;
+		case CustomPopOverViewDirectionRight:
+			self.center = CGPointMake(rect.origin.x - (self.frame.size.width/2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+			break;
+		default:
+			break;
+	}
+	
+	CGRect mainViewFrame = self.frame;	
+	
+	if (mainViewFrame.origin.x < 5) {
+		mainViewFrame.origin.x = 5;
+	}
+	if (mainViewFrame.origin.y < 5) {
+		mainViewFrame.size.height = rect.origin.y - 5;
+		mainViewFrame.origin.y = 5;
+	}
+	if (CGRectGetMaxY(mainViewFrame) > 999) {
+		mainViewFrame.size.height = 200.f; 
+	}
+	if (CGRectGetMaxX(mainViewFrame) > 763) {
+		mainViewFrame.size.width = 200.f; 
+	}
+	
+	self.frame = mainViewFrame;
+	
 	
 	switch (self.popOverDirection) {
 		case CustomPopOverViewDirectionUp:
@@ -527,16 +566,15 @@
 			break;
 		case CustomPopOverViewDirectionLeft:
 			self.center = CGPointMake(CGRectGetMaxX(rect) + (self.frame.size.width / 2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
-//			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
 			break;
 		case CustomPopOverViewDirectionRight:
-//			self.center = CGPointMake(rect.origin.x - (self.frame.size.width / 2), rect.origin.y + (rect.size.height/2));
 			self.center = CGPointMake(rect.origin.x - (self.frame.size.width/2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
 			break;
-			
 		default:
 			break;
 	}
+	
+	
 	
 	
 	[[[[UIApplication sharedApplication]delegate] window] addSubview:self];
@@ -544,19 +582,18 @@
 	NSLog(@"center %@",NSStringFromCGPoint(self.center));
 	NSLog(@"self.frame %@",NSStringFromCGRect(self.frame));
 	
-	CGRect mainViewFrame = self.frame;	
 	
-	if (self.popOverDirection == CustomPopOverViewDirectionUp || self.popOverDirection == CustomPopOverViewDirectionDown) {
-		if (mainViewFrame.origin.x < 5) {
-			self.frame = CGRectMake(5, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
-			offset = -(rect.origin.x + (rect.size.width/2));
-			[self setNeedsDisplay];
-		} else if (CGRectGetMaxX(mainViewFrame) > 763) {
-			self.frame = CGRectMake(763 - mainViewFrame.size.width, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
-			offset = (rect.origin.x + (rect.size.width/2));
-			[self setNeedsDisplay];
-		}
-	} else if (self.popOverDirection == CustomPopOverViewDirectionLeft || self.popOverDirection == CustomPopOverViewDirectionRight) {
+//	if (self.popOverDirection == CustomPopOverViewDirectionUp || self.popOverDirection == CustomPopOverViewDirectionDown) {
+//		if (mainViewFrame.origin.x < 5) {
+//			self.frame = CGRectMake(5, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
+//			offset = -(rect.origin.x + (rect.size.width/2));
+//			[self setNeedsDisplay];
+//		} else if (CGRectGetMaxX(mainViewFrame) > 763) {
+//			self.frame = CGRectMake(763 - mainViewFrame.size.width, mainViewFrame.origin.y, mainViewFrame.size.width, mainViewFrame.size.height);
+//			offset = (rect.origin.x + (rect.size.width/2));
+//			[self setNeedsDisplay];
+//		}
+//	} else if (self.popOverDirection == CustomPopOverViewDirectionLeft || self.popOverDirection == CustomPopOverViewDirectionRight) {
 //		if (mainViewFrame.origin.y < 0) {
 //			self.frame = CGRectMake(mainViewFrame.origin.x, 0, mainViewFrame.size.width, mainViewFrame.size.height);
 //			offset = -(rect.origin.y + (rect.size.height/2));
@@ -566,7 +603,10 @@
 //			offset = (rect.origin.y + (rect.size.height/2));
 //			[self setNeedsDisplay];
 //		}
-	}
+//	}
+	
+	
+
 	
 	
 	

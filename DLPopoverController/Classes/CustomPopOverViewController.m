@@ -49,7 +49,7 @@
 																						 bundle:nil];
 	tableViewController.view.frame = CGRectMake(0, 0, 320, 400);
 	CustumPopOverView * pop = [[CustumPopOverView alloc] initWithContentViewController:tableViewController 
-																	  WithPopOverColor:[UIColor blackColor] 
+																	  WithPopOverColor:[UIColor yellowColor] 
 																			WithOffset:0
 																  WithPopOverDirection:CustomPopOverViewDirectionDown];
 	
@@ -64,35 +64,35 @@
 	[tableViewController release];
 	[sampleViewController release];
 	
-	NSArray * colorsArray = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(CGFloat)(41.f/255.f) green:(CGFloat)(101.f/255.f) blue:(CGFloat)(251.f/255.f) alpha:1] CGColor], 
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
-					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],nil];
-	
-	pop.gradientColorsArray = colorsArray;
+//	NSArray * colorsArray = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(CGFloat)(41.f/255.f) green:(CGFloat)(101.f/255.f) blue:(CGFloat)(251.f/255.f) alpha:1] CGColor], 
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],
+//					   (id)[[UIColor colorWithRed:(CGFloat)(13.f/255.f) green:(CGFloat)(40.f/255.f) blue:(CGFloat)(111.f/255.f) alpha:1.0] CGColor],nil];
+//	
+//	pop.gradientColorsArray = colorsArray;
 	
 	[pop presentPopOverFromRect:sender.frame];
 	
