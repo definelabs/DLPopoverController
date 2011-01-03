@@ -23,7 +23,7 @@ typedef enum {
 @end
 
 
-@interface CustumPopOverView : UIView {
+@interface CustumPopOverView : UIView <UIGestureRecognizerDelegate>{
 	UIViewController * contentViewController;
 	CGSize contentSize;
 	UIView * popOverView;
@@ -56,5 +56,12 @@ typedef enum {
 			   WithPopOverDirection:(CustumPopOverDirection) popDirection ;
 
 
+
+-(BOOL) isPortrait;
+-(BOOL) isFrameWithInWindow:(CGRect) aRect;
+-(float) isWidthOfFrameWithinWindow:(CGRect) aRect;
+-(float) isHeightOfFrameWithinWindow:(CGRect) aRect;
+-(float) isXCoordinateOfRectInWindow:(CGRect) aRect;
+-(float) isYCoordinateOfRectInWindow:(CGRect) aRect;
 
 @end

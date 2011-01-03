@@ -35,10 +35,6 @@
 //}
 
 
--(void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
-	
-}
-
 @end
 
 
@@ -280,7 +276,7 @@
 		//		self.contentViewController.navigationController.navigationBar.tintColor = [UIColor yellowColor];
 		self.contentViewController.view.clipsToBounds = YES;
 		self.contentViewController.view.layer.cornerRadius = CONTENT_VIEW_OFFSET;
-		self.backgroundColor = [UIColor clearColor];
+		self.backgroundColor = [UIColor greenColor];
 		NSLog(@"contentViewControllerFrame %@",NSStringFromCGRect(contentViewControllerFrame));
 		NSLog(@"mainViewFrame %@",NSStringFromCGRect(self.frame));
 		
@@ -305,7 +301,7 @@
 //		self.contentViewController.view.center = CGPointMake(popOverView.center.x, popOverView.center.y - ARROW_HEIGHT);//popOverView.center;
 //		self.contentViewController.view.center = popOverView.center;
 		NSLog(@"popOverView %@",NSStringFromCGRect(popOverView.frame));
-		//popOverView.backgroundColor = popOverColor;
+		popOverView.backgroundColor = popOverColor;
 		
 		//CAGradientLayer *gradient = [CAGradientLayer layer];
 //		gradient.frame = popOverView.bounds;
@@ -339,8 +335,8 @@
 //		
 //		[popOverView.layer insertSublayer:gradient atIndex:0];
 		popOverView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin; 
-		[popOverView.layer setBorderColor:[UIColor darkGrayColor].CGColor];
-		[popOverView.layer setBorderWidth: 1.0];
+//		[popOverView.layer setBorderColor:[UIColor darkGrayColor].CGColor];
+//		[popOverView.layer setBorderWidth: 1.0];
 		
 		popOverView.clipsToBounds = YES;
 		popOverView.alpha = 1.f;
@@ -539,45 +535,59 @@
 	}
 	
 	CGRect mainViewFrame = self.frame;	
+//	NSLog(@"BOOL %i",[self isPortrait]);
+//	NSLog(@"BOOL %i",[self isFrameWithInWindow:mainViewFrame]);
+//	NSLog(@"Width %f",[self isWidthOfFrameWithinWindow:mainViewFrame]);
+//	NSLog(@"Height %f",[self isHeightOfFrameWithinWindow:mainViewFrame]);
 	
-	if (mainViewFrame.origin.x < 5) {
-		mainViewFrame.origin.x = 5;
-	}
-	if (mainViewFrame.origin.y < 5) {
-		mainViewFrame.size.height = rect.origin.y - 5;
-		mainViewFrame.origin.y = 5;
-	}
-	if (CGRectGetMaxY(mainViewFrame) > 999) {
-		mainViewFrame.size.height = 200.f; 
-	}
-	if (CGRectGetMaxX(mainViewFrame) > 763) {
-		mainViewFrame.size.width = 200.f; 
-	}
-	
-	self.frame = mainViewFrame;
-	
-	
-	switch (self.popOverDirection) {
-		case CustomPopOverViewDirectionUp:
-			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
-			break;
-		case CustomPopOverViewDirectionDown:
-			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y - (self.frame.size.height/2) + 20);
-			break;
-		case CustomPopOverViewDirectionLeft:
-			self.center = CGPointMake(CGRectGetMaxX(rect) + (self.frame.size.width / 2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
-			break;
-		case CustomPopOverViewDirectionRight:
-			self.center = CGPointMake(rect.origin.x - (self.frame.size.width/2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
-			break;
-		default:
-			break;
+	if (![self isFrameWithInWindow:mainViewFrame]) {
+//		if ([self isXCoordinateOfRectInWindow:mainViewFrame]) {
+//			mainViewFrame.origin.x = 5;
+//		}
+//		if ([self isYCoordinateOfRectInWindow:mainViewFrame]) {
+//			mainViewFrame.origin.y = 5;
+//		}
+		mainViewFrame.size.width = [self isWidthOfFrameWithinWindow:mainViewFrame];
+		mainViewFrame.size.height = [self isHeightOfFrameWithinWindow:mainViewFrame];
+		mainViewFrame.origin.x = [self isXCoordinateOfRectInWindow:mainViewFrame];
+		mainViewFrame.origin.y = [self isYCoordinateOfRectInWindow:mainViewFrame];
+		self.frame = mainViewFrame;
 	}
 	
+//	
+//	if (mainViewFrame.origin.x < 5) {
+//		mainViewFrame.origin.x = 5;
+//	}
+//	if (mainViewFrame.origin.y < 5) {
+//		mainViewFrame.size.height = rect.origin.y - 5;
+//		mainViewFrame.origin.y = 5;
+//	}
+//	if (CGRectGetMaxY(mainViewFrame) > 999) {
+//		mainViewFrame.size.height = 999 - mainViewFrame.origin.y - 40; 
+//	}
+//	if (CGRectGetMaxX(mainViewFrame) > 763) {
+//		mainViewFrame.size.width = 763 - mainViewFrame.origin.x - 40; 
+//	}
+//	self.frame = mainViewFrame;
+//	
+//	switch (self.popOverDirection) {
+//		case CustomPopOverViewDirectionUp:
+//			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y + rect.size.height+(rect.size.height/2) + (self.frame.size.height/2));//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+//			break;
+//		case CustomPopOverViewDirectionDown:
+//			self.center = CGPointMake(rect.origin.x + (rect.size.width/2), rect.origin.y - (self.frame.size.height/2) + 20);
+//			break;
+//		case CustomPopOverViewDirectionLeft:
+//			self.center = CGPointMake(CGRectGetMaxX(rect) + (self.frame.size.width / 2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+//			break;
+//		case CustomPopOverViewDirectionRight:
+//			self.center = CGPointMake(rect.origin.x - (self.frame.size.width/2), rect.origin.y + rect.size.height);//CGPointMake(rect.origin.x + (rect.size.width/2), rect.size.height + (self.frame.size.height));
+//			break;
+//		default:
+//			break;
+//	}
 	
-	
-	
-	[[[[UIApplication sharedApplication]delegate] window] addSubview:self];
+	[[[[UIApplication sharedApplication] delegate] window] addSubview:self];
 	self.hidden = YES;
 	NSLog(@"center %@",NSStringFromCGPoint(self.center));
 	NSLog(@"self.frame %@",NSStringFromCGRect(self.frame));
@@ -604,14 +614,8 @@
 //			[self setNeedsDisplay];
 //		}
 //	}
-	
-	
-
-	
-	
-	
 	CATransition *transition = [CATransition animation];
-	transition.duration = 1.f;
+	transition.duration = .3f;
 	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 	transition.type = kCATransitionReveal;
 	[self.layer addAnimation:transition forKey:nil];
@@ -660,8 +664,6 @@
 -(void)handleSingleTap:(UITapGestureRecognizer*)gestureRecognizer{
 	NSLog(@"window touched");
 	[self dismissPopOver];
-
-	
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -701,5 +703,83 @@
 	//	BOOL insideMultimedia = [scrollView hitTest:touchPoint withEvent:nil];
 	//	return !insideMultimedia;
 }
+
+
+#pragma mark Frame Methods
+
+
+-(BOOL) isPortrait {
+	if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+
+-(BOOL) isFrameWithInWindow:(CGRect) aRect {
+	if ([self isPortrait]) {
+		if (aRect.origin.x < 0 || aRect.origin.y < 0) {
+			return NO;
+		} else if (CGRectGetMaxY(aRect) > 1019 || CGRectGetMaxX(aRect) > 763) {
+			return NO;
+		}
+	} else {
+		if (aRect.origin.x < 0 || aRect.origin.y < 0) {
+			return NO;
+		} else if (CGRectGetMaxY(aRect) > 763 || CGRectGetMaxX(aRect) > 1019) {
+			return NO;
+		}
+	}
+	return YES;
+}
+
+
+-(float) isWidthOfFrameWithinWindow:(CGRect) aRect {
+	if (aRect.origin.x > 0) {
+		if ([self isPortrait]) {
+			if (CGRectGetMaxX(aRect) > 763) {
+				return aRect.size.width > 763 ? 763 : 763 - aRect.origin.x;
+			}
+		} else {
+			if (CGRectGetMaxX(aRect) > 1019) {
+				return aRect.size.width > 1019 ? 1019 : 1019 - aRect.origin.x;
+			}
+		}
+	} else {
+		return CGRectGetMaxX(aRect);
+	}
+	return aRect.size.width;
+}
+
+
+-(float) isHeightOfFrameWithinWindow:(CGRect) aRect {
+	if (aRect.origin.y > 0) {
+		if ([self isPortrait]) {
+			if (CGRectGetMaxY(aRect) > 1019) {
+				return aRect.size.height > 1019 ? 1019 : 1019 - aRect.origin.y;
+			}
+		} else {
+			if (CGRectGetMaxY(aRect) > 763) {
+				return aRect.size.height > 763 ? 763 : 763 - aRect.origin.y;
+			}
+		}		
+	} else {
+		return CGRectGetMaxY(aRect);
+	}
+
+	return aRect.size.height;
+}
+
+
+-(float) isXCoordinateOfRectInWindow:(CGRect) aRect {
+	return aRect.origin.x < 0 ? 5 : aRect.origin.x;
+}
+
+-(float) isYCoordinateOfRectInWindow:(CGRect) aRect {
+	return aRect.origin.y < 0 ? 5 : aRect.origin.y;
+}
+
+
 
 @end
